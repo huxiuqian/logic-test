@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huxiuqianbs.mapper.MessageMapper">
+
+     
+    <select id="getTalkMessage" resultType="com.huxiuqianbs.pojo.Message">
+     select * from message where tid = 1 ORDER BY mid DESC
+    </select>
+    
+    <select id="getTalkMsg" resultType="com.huxiuqianbs.pojo.Msg">
+     select message.mid,message.id,message.tid,message.mtopic,message.mcet,message.mtime,userinfo.realName from message,userinfo where message.id=userinfo.id and tid = 1 ORDER BY mid DESC
+    </select>
+    
+    <select id="getChatMessage" resultType="com.huxiuqianbs.pojo.Message">
+     select * from message where tid = 2 ORDER BY mid DESC
+    </select>  
+    
+    <select id="getChatMsg" resultType="com.huxiuqianbs.pojo.Msg">
+     select message.mid,message.id,message.tid,message.mtopic,message.mcet,message.mtime,userinfo.realName from message,userinfo where message.id=userinfo.id and tid = 2 ORDER BY mid DESC
+    </select>
+       
+    <select id="getJobMessage" resultType="com.huxiuqianbs.pojo.Message">
+     select * from message where tid = 3 ORDER BY mid DESC
+    </select>  
+	
+	<select id="getJobMsg" resultType="com.huxiuqianbs.pojo.Msg">
+     select message.mid,message.id,message.tid,message.mtopic,message.mcet,message.mtime,userinfo.realName from message,userinfo where message.id=userinfo.id and tid = 3 ORDER BY mid DESC
+    </select>
+    
+	<select id="getMessage" parameterType="int" resultType="com.huxiuqianbs.pojo.Message">
+     select * from message where mid=#{mid}
+    </select>
+    
+	<insert id="addMessage" parameterType="com.huxiuqianbs.pojo.Message">
+	insert into message (id,tid,mtopic,mcet,mtime) values (#{id},#{tid},#{mtopic},#{mcet},#{mtime})
+	</insert>
+	
+	<delete id="delMessage" parameterType="int">
+		delete from message where mid=#{mid}
+	</delete>
+	
+	<select id="selectByTopic" parameterType="String" resultType="com.huxiuqianbs.pojo.Msg">  
+  		select message.mid,message.id,message.tid,message.mtopic,message.mcet,message.mtime,userinfo.realName from message,userinfo where message.id=userinfo.id and tid = 1 and mtopic like "%"#{mtopic}"%"  
+	</select>
+	
+	<select id="selectChatByTopic" parameterType="String" resultType="com.huxiuqianbs.pojo.Msg">  
+  		select message.mid,message.id,message.tid,message.mtopic,message.mcet,message.mtime,userinfo.realName from message,userinfo where message.id=userinfo.id and tid = 2 and mtopic like "%"#{mtopic}"%"  
+	</select>
+	
+	<select id="selectJobByTopic" parameterType="String" resultType="com.huxiuqianbs.pojo.Msg">  
+  		select message.mid,message.id,message.tid,message.mtopic,message.mcet,message.mtime,userinfo.realName from message,userinfo where message.id=userinfo.id and tid = 3 and mtopic like "%"#{mtopic}"%"  
+	</select>
+</mapper>

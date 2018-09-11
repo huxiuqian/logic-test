@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huxiuqianbs.mapper.TechMapper">
+
+  
+    <select id="queryTech" resultType="com.huxiuqianbs.pojo.Tech">
+     	select * from tech
+    </select>  
+    
+    <select id="getTech" resultType="com.huxiuqianbs.pojo.Tech">
+     	select * from tech ORDER BY techid DESC limit 0,5
+    </select>
+    
+    <insert id="addTech" parameterType="com.huxiuqianbs.pojo.Tech">
+	insert into tech (techid,techtopic,techcet,techtime) values (#{techid},#{techtopic},#{techcet},#{techtime})
+	</insert>
+    
+    <delete id="delTech" parameterType="int">
+		delete from tech where techid=#{techid}
+	</delete>  
+
+	
+</mapper>

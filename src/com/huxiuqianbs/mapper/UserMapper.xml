@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huxiuqianbs.mapper.UserMapper">
+
+   <resultMap type="com.huxiuqianbs.pojo.User" id="UserMap">
+      <id property="id" column="id"/>
+      <result property="userName" column="userName"/>
+      <result property="pwd" column="pwd"/>
+      <result property="realName" column="realName"/>
+      <result property="tel" column="tel"/>
+      <result property="email" column="email"/>
+    </resultMap>  
+    
+	<select id="login" parameterType="com.huxiuqianbs.pojo.User" resultType="com.huxiuqianbs.pojo.User">
+		select * from userinfo where userName=#{userName} and pwd = #{pwd}
+	</select>
+	<select id="findByUserName" parameterType="String" resultType="com.huxiuqianbs.pojo.User">
+		select * from userinfo where userName=#{userName}
+	</select>
+	<insert id="register" parameterType="com.huxiuqianbs.pojo.User" keyProperty="id" useGeneratedKeys="true">
+		insert into userinfo (userName,pwd,realName,tel,email) values (#{userName},#{pwd},#{realName},#{tel},#{email})
+	</insert>
+	<select id="findAllUser" resultType="com.huxiuqianbs.pojo.User">
+		select * from userinfo
+	</select>
+	<select id="findByUid" parameterType="int" resultType="com.huxiuqianbs.pojo.User">
+		select * from userinfo where id=#{id}
+	</select>
+	
+	<update id="modifyUser" parameterType="com.huxiuqianbs.pojo.User">
+		update userinfo set userName=#{userName}, pwd=#{pwd},realName=#{realName},tel=#{tel},email=#{email} where id=#{id}
+	</update>
+	
+	<delete id="deleteUser" parameterType="int">
+		delete from userinfo where id=#{id}
+	</delete>
+	
+	<select id="selectPage" parameterType="com.huxiuqianbs.plugin.interceptor.Page" resultType="com.huxiuqianbs.pojo.User">
+		select * from userinfo
+	</select>
+
+</mapper>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huxiuqianbs.mapper.QuestionMapper">
+
+   <resultMap type="com.huxiuqianbs.pojo.Question" id="QuestionMap">
+      <id property="qid" column="qid"/>
+      <result property="qcet" column="qcet"/>
+      <result property="answer" column="answer"/>
+    </resultMap> 
+     
+    <select id="queryQue" resultType="com.huxiuqianbs.pojo.Question">
+     select * from question
+    </select>  
+    
+    <select id="queryQueById" parameterType="int" resultType="com.huxiuqianbs.pojo.Question">
+     select * from question where qid=#{qid}
+    </select> 
+    
+    <delete id="delQue" parameterType="int">
+		delete from question where qid=#{qid}
+	</delete>  
+	
+	<insert id="addQue" parameterType="com.huxiuqianbs.pojo.Question">
+	insert into question (qid,qcet,answer) values (#{qid},#{qcet},#{answer})
+	</insert>
+	
+	<update id="updateQue" parameterType="com.huxiuqianbs.pojo.Question">
+		update question set qcet=#{qcet}, answer=#{answer} where qid=#{qid}
+	</update>
+</mapper>

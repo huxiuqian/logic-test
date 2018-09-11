@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huxiuqianbs.mapper.ChoiceMapper">
+
+  
+    <select id="queryChoice" resultType="com.huxiuqianbs.pojo.Choice">
+     select * from choice
+    </select> 
+    
+    <select id="queryChoiceById" parameterType="int" resultType="com.huxiuqianbs.pojo.Choice">
+     select * from choice where cid=#{cid}
+    </select> 
+    
+    <insert id="addChoice" parameterType="com.huxiuqianbs.pojo.Choice">
+	insert into choice (cid,ccet,a,b,c,d,correct) values (#{cid},#{ccet},#{a},#{b},#{c},#{d},#{correct})
+	</insert>
+    
+    <delete id="delChoice" parameterType="int">
+		delete from choice where cid=#{cid}
+	</delete>  
+
+	<update id="updateChoice" parameterType="com.huxiuqianbs.pojo.Choice">
+		update choice set ccet=#{ccet}, a=#{a}, b=#{b}, c=#{c}, d=#{d}, correct=#{correct} where cid=#{cid}
+	</update>
+</mapper>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huxiuqianbs.mapper.AdminMapper">
+   
+	<select id="loginAdmin" parameterType="com.huxiuqianbs.pojo.Admin" resultType="com.huxiuqianbs.pojo.Admin">
+		select * from admin where aname=#{aname} and apwd = #{apwd}
+	</select>
+
+	<select id="findAdmin" resultType="com.huxiuqianbs.pojo.Admin">
+		select * from admin 
+	</select>
+	<select id="findAdminByName" parameterType="String" resultType="com.huxiuqianbs.pojo.Admin">
+		select * from admin where aname=#{aname}
+	</select>
+	<update id="updateAdmin" parameterType="com.huxiuqianbs.pojo.Admin">
+		update admin set aname=#{aname}, apwd=#{apwd},arealName=#{arealName},atel=#{atel},aemail=#{aemail} where aid=1
+	</update>
+
+
+</mapper>

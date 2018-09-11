@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huxiuqianbs.mapper.ReplyMapper">
+     
+    <select id="getReply" parameterType="int" resultType="com.huxiuqianbs.pojo.Reply">
+     select * from reply where mid=#{mid} ORDER BY rid
+    </select>
+    
+    <select id="getRpy" parameterType="int" resultType="com.huxiuqianbs.pojo.Rpy">
+     select reply.rid,reply.mid,reply.id,reply.rcet,reply.rtime,userinfo.realName from reply,userinfo where reply.id=userinfo.id and mid=#{mid} ORDER BY rid
+    </select>
+	
+	<insert id="addReply" parameterType="com.huxiuqianbs.pojo.Reply">
+	insert into reply (mid,id,rcet,rtime) values (#{mid},#{id},#{rcet},#{rtime})
+	</insert>
+	
+</mapper>
